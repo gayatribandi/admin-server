@@ -1,13 +1,11 @@
 
-var mongodb=require('mongodb')
+var mongodb=require('mongodb');
+const getDB = require('../common/getDB');
 async function loginDAO(data){
   //connect with db
   try
   {
-    var url="mongodb+srv://gbnit:gbnit@gb7amcluster.l858b.mongodb.net/"
-  var mongoClient = mongodb.MongoClient
-  const server=await mongoClient.connect(url)
-  var db=server.db('nit')
+    var db=await getDB()
   var collection=db.collection('admin')
   var result=await collection.find(data).toArray()
   return result;
